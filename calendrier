@@ -1,0 +1,45 @@
+import csv
+
+# Configuration initiale
+year = 2024
+month_names = ["January", "February", "March", "April", "May", "June",
+               "July", "August", "September", "October", "November", "December"]
+
+# Congés : tuples au format (mois, jour)
+conges = [
+    (9, 2), (10, 14), (12, 25), (12, 26), (12, 27), (12, 28), 
+    (12, 29), (12, 30), (12, 31), (1, 1), (1, 2), (1, 3), 
+    (1, 4), (3, 3), (3, 4), (3, 5), (3, 6), (3, 7), (3, 8), 
+    (5, 19), (6, 23)
+]
+
+# Semaine A/B : A pour pair, B pour impair
+semaine_ab = {i: 'A' if i % 2 == 0 else 'B' for i in range(1, 53)}
+
+# Fichier CSV de sortie
+output_file = 'calendrier_scolaire.csv'
+
+# Création du fichier CSV
+with open(output_file, mode='w', newline='') as file:
+    writer = csv.writer(file)
+    
+    # Écrire l'en-tête
+    writer.writerow(["Mois", "Jour", "Jour de la semaine", "Semaine A/B", "Type de jour"])
+
+    # Parcourir chaque mois
+    for month in range(1, 13):
+        cal = calendar.monthcalendar(year, month)
+        
+        for week in cal:
+            for day_index, day in enumerate(week):
+                if day != 0:
+                    # Détermination du type de jour
+                    type_de_jour = "Congé" if (month, day) in conges else "Jour normal"
+                    
+                    # Semaine A/B
+                    semaine = semaine_ab[calendar.week_of_year(year, month, day)]
+                    
+                    # Écrire la ligne
+                    writer.writerow([month_names[month - 1], day, calendar.day_name[day_index], semaine, type_de_jour])
+
+print(f"Calendrier scolaire exporté dans {output_file}.")
