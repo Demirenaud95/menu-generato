@@ -1,0 +1,20 @@
+import csv
+
+data = [
+    ["Catégorie", "Plat", "Ingrédients"],
+    ["Entrées", "Entrée Madisons", "Mélange mesclun; Vinaigrette italienne; Tomates; Oignons rouges"],
+    ["Entrées", "Nachos", "Nachos; Salsa (1ère couche); 2 oz Monterey-Cheddar; Tomates; Oignons rouges; Cuire au four; 3 oz Salsa (après cuisson); 1/4 c-à-t sauce à tartare"],
+    ["Entrées", "Calmars Frits", "Calmars; Piments banane; Sauce marinara (2 oz)"],
+    ["Entrées", "Crevettes Tempura", "Crevettes tempura; Réduction balsamique; 1.5 oz chili doux"],
+    ["Salades", "Salade Poulet et Avocat", "Mélange mesclun; Vinaigrette miel-moutarde; 1/2 Avocat; Poulet (½ poitrine ou 3 tenders); Olives; Échalotes"],
+    ["Salades", "Salade de Thon", "Mélange mesclun; Vinaigrette miel-gingembre; Salade de mangues; 1/2 Avocat; Échalotes; Pavé de thon au sésame"],
+    ["Salades", "Salade (Simple)", "Mélange mesclun; Vinaigrette lime-gingembre; Tomates; Oignons rouges"],
+    ["Dumplings", "Dumplings", "Dumplings; Juliennes de poivrons; Sauce chili doux"],
+    ["Tartares", "Tartare de Saumon", "Tartare 3 oz : 1/4 c-à-t câpres hachées, 1/2 c-à-t sauce à tartare; Tartare 6 oz : 1/2 c-à-t câpres hachées, 1/2 c-à-t sauce à tartare"],
+]
+
+with open("menu_cuisine.csv", mode="w", newline="", encoding="utf-8") as file:
+    writer = csv.writer(file)
+    writer.writerows(data)
+
+print("Fichier 'menu_cuisine.csv' généré avec succès.")
